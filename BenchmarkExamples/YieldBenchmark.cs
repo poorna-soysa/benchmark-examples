@@ -9,47 +9,54 @@ namespace BenchmarkExamples;
 [HideColumns(Column.RatioSD)]
 public class YieldBenchmark
 {
+    private List<int> precomputedNumbers;
+
     [Params(100_000)]
-    public int Number { get; set; }
+    public int NumberOfElements { get; set; }
 
 
-    [Benchmark(Baseline = true)]
-    public void GetEvenNumbers()
+    [GlobalSetup]
+    public void InitializeBenchmark()
     {
-        var results = GetEvenNumbers1();
+        precomputedNumbers = new List<int>();
+        for (var index = 0; index < NumberOfElements; index++)
+        {
+            precomputedNumbers.Add(index);
+        }
     }
 
     [Benchmark]
-    public void GetEvenNumbers_Yield()
+    public void SquareNumbersUsingYield()
     {
-        var results = GetEvenNumbersYield1();
-    }
-
-    public IEnumerable<int> GetEvenNumbers1()
-    {
-        List<int> evenNumbers = new();
-
-        for (int i = 1; i <= Number; i += 2)
+        foreach (var number in GenerateNumbersUsingYield(NumberOfElements))
         {
-            evenNumbers.Add(i);
+            var squaredNumber = number * number;
         }
-        return evenNumbers;
     }
 
-    public IEnumerable<int> GetEvenNumbersYield1()
+    [Benchmark]
+    public void SquareNumbersUsingList()
     {
-        for (int i = 1; i <= Number; i += 2)
+        foreach (var number in precomputedNumbers)
         {
-            yield return i;
+            var squaredNumber = number * number;
+        }
+    }
+
+    private IEnumerable<int> GenerateNumbersUsingYield(int maximumValue)
+    {
+        for (int index = 0; index < maximumValue; index++)
+        {
+            yield return index;
         }
     }
 
 }
 
-public class StyleConfig : ManualConfig
-{
-    public StyleConfig()
-    {
-        SummaryStyle = SummaryStyle.Default.WithRatioStyle(RatioStyle.Trend);
-    }
-}
+//public class StyleConfig : ManualConfig
+//{
+//    public StyleConfig()
+//    {
+//        SummaryStyle = SummaryStyle.Default.WithRatioStyle(RatioStyle.Trend);
+//    }
+//}

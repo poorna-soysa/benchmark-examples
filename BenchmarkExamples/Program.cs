@@ -2,5 +2,5 @@
 using BenchmarkDotNet.Running;
 using BenchmarkExamples;
 
-BenchmarkRunner.Run<YieldBenchmark>();
+BenchmarkRunner.Run<ExceptionBenchmarkInMultipleFramework>();
 
