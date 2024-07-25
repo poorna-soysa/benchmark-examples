@@ -2,5 +2,4 @@
 using BenchmarkDotNet.Running;
 using BenchmarkExamples;
 
-BenchmarkRunner.Run<ExceptionBenchmarkInMultipleFramework>();
-
+BenchmarkRunner.Run<StringConcatenationAndStringBuilderBenchmark>();

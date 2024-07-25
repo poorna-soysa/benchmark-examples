@@ -34,14 +34,14 @@ public class ExceptionBenchmarkInMultipleFramework
         }
     }
 
-}
-
-public class StyleConfig : ManualConfig
-{
-    public StyleConfig()
+    private class StyleConfig : ManualConfig
     {
-        SummaryStyle = SummaryStyle.Default.WithRatioStyle(RatioStyle.Trend);
+        public StyleConfig()
+        {
+            SummaryStyle = SummaryStyle.Default.WithRatioStyle(RatioStyle.Trend);
+        }
     }
 }
+
 
 

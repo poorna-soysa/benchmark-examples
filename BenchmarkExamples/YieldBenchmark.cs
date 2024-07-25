@@ -51,6 +51,14 @@ public class YieldBenchmark
         }
     }
 
+    private class StyleConfig : ManualConfig
+    {
+        public StyleConfig()
+        {
+            SummaryStyle = SummaryStyle.Default.WithRatioStyle(RatioStyle.Trend);
+        }
+    }
+
 }
 
 //public class StyleConfig : ManualConfig
