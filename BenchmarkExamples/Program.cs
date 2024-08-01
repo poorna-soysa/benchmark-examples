@@ -2,4 +2,4 @@
 using BenchmarkDotNet.Running;
 using BenchmarkExamples;
 
-BenchmarkRunner.Run<StringConcatenationAndStringBuilderBenchmark>();
+BenchmarkRunner.Run<StringBuilderBenchmarkMultipleFramework>();
