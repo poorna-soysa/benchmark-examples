@@ -2,4 +2,4 @@
 using BenchmarkDotNet.Running;
 using BenchmarkExamples;
 
-BenchmarkRunner.Run<StringBuilderBenchmarkMultipleFramework>();
+BenchmarkRunner.Run<SelectManyBenchMark>();
